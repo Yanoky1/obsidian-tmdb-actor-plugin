@@ -1,0 +1,737 @@
+/* ===== SEARCH MODAL STYLES ===== */
+
+/* Input container */
+.TMDB-plugin__search-modal--input {
+	padding-bottom: 1.5rem;
+}
+
+/* Search input field */
+.TMDB-plugin__search-modal--input input {
+	width: 100%;
+	padding: 0.75rem 1rem;
+	border: 2px solid var(--background-modifier-border);
+	border-radius: 8px;
+	background: var(--background-primary);
+	color: var(--text-normal);
+	font-size: 1rem;
+}
+
+.TMDB-plugin__search-modal--input input:focus {
+	outline: none;
+	border-color: var(--interactive-accent);
+	transform: translateY(-1px);
+}
+
+.TMDB-plugin__search-modal--input input::placeholder {
+	color: var(--text-muted);
+	opacity: 0.7;
+}
+
+/* ===== SUGGEST MODAL STYLES ===== */
+
+/* Movie list item container */
+.TMDB-plugin__suggest-item {
+	display: flex;
+	align-items: center;
+	background: var(--background-secondary);
+	border-radius: 8px;
+	cursor: pointer;
+	margin: 0 0 5px 0;
+}
+
+.TMDB-plugin__suggest-item:hover {
+
+	background: var(--background-modifier-hover);
+
+}
+
+
+.modal-content.TMDB-plugin__image-approval-modal {
+	display: flex;
+	flex-direction: column;
+	max-height: 80vh;
+	/* Ограничиваем высоту модалки */
+	padding: 0 !important;
+	/* Убираем внутренние отступы, чтобы футер прилипал к краям */
+	overflow: hidden;
+
+
+}
+
+/* Заголовок внутри контента (если есть) */
+.TMDB-plugin__image-approval-modal h2 {
+	padding: 20px 20px 10px 20px;
+	margin: 0;
+	flex-shrink: 0;
+}
+
+/* Movie poster */
+.TMDB-plugin__suggest-poster {
+	width: 80px;
+	height: auto;
+	border-radius: 6px;
+}
+
+
+
+.TMDB-plugin__image-preview {
+	max-width: 200px;
+	height: auto;
+}
+
+.modal-content {
+	overflow-x: hidden;
+}
+
+
+/* Poster placeholder when image unavailable */
+.TMDB-plugin__suggest-poster-placeholder {
+	width: 80px;
+	height: 120px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background: var(--background-modifier-border);
+	border: 1px solid var(--background-modifier-border);
+	border-radius: 6px;
+	font-size: 24px;
+	color: var(--text-muted);
+}
+
+/* Movie text info (title, year, type) */
+.TMDB-plugin__suggest-text-info {
+	padding-left: 1rem;
+	flex: 1;
+	min-width: 0;
+}
+
+.TMDB-plugin__suggest-text-info div:first-child {
+	font-size: 1.1rem;
+	font-weight: 600;
+	color: var(--text-normal);
+	line-height: 1.3;
+	margin-bottom: 0.25rem;
+	word-break: break-word;
+}
+
+.TMDB-plugin__suggest-text-info small {
+	color: var(--text-muted);
+	font-size: 0.9rem;
+	line-height: 1.4;
+	display: block;
+	word-break: break-word;
+}
+
+/* ===== RESPONSIVE DESIGN ===== */
+
+/* Mobile devices */
+@media (max-width: 599px) {
+	.TMDB-plugin__image-approval-modal {
+		max-height: 90vh;
+		display: flex;
+		flex-direction: column;
+	}
+
+	.TMDB-plugin__summary-section {
+		flex: 1 1 100%;
+		/* На мобилках возвращаем один столбец */
+	}
+
+	.TMDB-plugin__summary-scroll {
+		flex: 1;
+		max-height: none;
+	}
+
+	/* Уменьшаем высоту превью, чтобы не перекрывать кнопки */
+	.TMDB-plugin__summary-image-frame.is-poster img {
+		max-height: 150px;
+	}
+
+	.TMDB-plugin__images-grid {
+		grid-template-columns: repeat(2, 1fr);
+		/* Все равно 2 столбца */
+		gap: 8px;
+		padding: 5px;
+	}
+
+	.modal-content h2 {
+		font-size: 1.2em;
+		text-align: center;
+	}
+
+	.TMDB-plugin__button-container {
+
+		padding: 10px 10px !important;
+
+	}
+
+}
+
+
+/* ===== PLUGIN SETTINGS STYLES ===== */
+
+/* Main settings container */
+.TMDB-plugin__settings {
+	width: 100%;
+	max-width: none;
+	padding: 20px;
+}
+
+/* Common setting item styles */
+.TMDB-plugin__settings .setting-item {
+	position: relative;
+	padding: 20px 0;
+
+}
+
+.TMDB-plugin__settings .setting-item:last-child {
+	border-bottom: none;
+}
+
+/* Section headings - no transform on hover */
+.TMDB-plugin__settings .setting-item.mod-heading {
+	margin-top: 32px;
+	margin-bottom: 16px;
+	padding: 16px 0;
+	background-color: transparent;
+}
+
+.TMDB-plugin__settings .setting-item.mod-heading:first-child {
+	margin-top: 0;
+}
+
+.TMDB-plugin__settings .setting-item.mod-heading .setting-item-info .setting-item-name {
+	font-size: 1.3em;
+	font-weight: 700;
+	color: var(--interactive-accent);
+	text-transform: uppercase;
+	letter-spacing: 1px;
+	position: relative;
+}
+
+.TMDB-plugin__settings .setting-item.mod-heading .setting-item-info .setting-item-name::after {
+	content: "";
+	position: absolute;
+	bottom: -8px;
+	left: 0;
+	width: 40px;
+	height: 3px;
+	background: linear-gradient(90deg,
+			var(--interactive-accent),
+			var(--interactive-accent-hover));
+	border-radius: 2px;
+}
+
+/* Setting item info */
+
+
+.TMDB-plugin__settings .setting-item-name {
+	font-weight: 600;
+	color: var(--text-normal);
+	margin-bottom: 6px;
+	font-size: 1em;
+}
+
+.TMDB-plugin__settings .setting-item-description {
+	color: var(--text-muted);
+	font-size: 0.9em;
+	line-height: 1.5;
+}
+
+.TMDB-plugin__settings .setting-item-description a {
+	color: var(--interactive-accent);
+	text-decoration: none;
+	font-weight: 500;
+
+}
+
+
+
+/* Setting controls */
+.TMDB-plugin__summary-actions .setting-item-control,
+.TMDB-plugin__button-container .setting-item-control,
+.TMDB-plugin__button-container .setting-item {
+	justify-content: center !important;
+	min-width: 0 !important;
+	/* Убираем стандартную минимальную ширину Obsidian */
+	width: 100% !important;
+	max-width: none !important;
+	padding: 0 !important;
+	margin: 0 !important;
+}
+
+/* Input fields - wide and consistent */
+.TMDB-plugin__settings input[type="text"],
+.TMDB-plugin__settings input[type="search"] {
+	width: 100%;
+	min-width: 400px;
+	max-width: 600px;
+	padding: 12px 16px;
+	border: 2px solid var(--background-modifier-border);
+	border-radius: 8px;
+	background-color: var(--background-primary);
+	color: var(--text-normal);
+	font-size: 0.95em;
+	position: relative;
+}
+
+.TMDB-plugin__settings input[type="text"]:focus,
+.TMDB-plugin__settings input[type="search"]:focus {
+	outline: none;
+	border-color: var(--interactive-accent);
+	transform: scale(1.02);
+}
+
+
+/* Token validation indicators - proper colors */
+.TMDB-plugin__settings .TMDB-plugin__token-checking {
+	border-color: #ffa500 !important;
+	/* Orange for checking */
+	background-color: var(--background-primary);
+	position: relative;
+	animation: tokenPulse 2s infinite ease-in-out;
+}
+
+.TMDB-plugin__settings .TMDB-plugin__token-checking::after {
+	content: "";
+	position: absolute;
+	right: 12px;
+	top: 50%;
+	transform: translateY(-50%);
+	width: 18px;
+	height: 18px;
+	border: 3px solid #ffa500;
+	border-top: 3px solid transparent;
+	border-radius: 50%;
+	animation: tokenSpin 1s linear infinite;
+}
+
+.TMDB-plugin__settings .TMDB-plugin__token-valid {
+	border-color: #00aa00 !important;
+	/* Green for valid */
+	background-color: var(--background-primary);
+}
+
+.TMDB-plugin__settings .TMDB-plugin__token-valid::after {
+	content: "✓";
+	position: absolute;
+	right: 12px;
+	top: 50%;
+	transform: translateY(-50%);
+	color: #00aa00;
+	font-weight: bold;
+	font-size: 16px;
+	animation: tokenCheckmark 0.5s ease-out;
+}
+
+.TMDB-plugin__settings .TMDB-plugin__token-invalid {
+	border-color: #ff4444 !important;
+	/* Red for invalid */
+	background-color: var(--background-primary);
+
+}
+
+.TMDB-plugin__settings .TMDB-plugin__token-invalid::after {
+	content: "✕";
+	position: absolute;
+	right: 12px;
+	top: 50%;
+	transform: translateY(-50%);
+	color: #ff4444;
+	font-weight: bold;
+	font-size: 16px;
+
+}
+
+/* Buttons - fixed width */
+.TMDB-plugin__settings button {
+	padding: 12px 20px;
+	border: 2px solid var(--interactive-normal);
+	border-radius: 8px;
+	background-color: var(--interactive-normal);
+	color: var(--text-on-accent);
+	font-size: 0.9em;
+	font-weight: 600;
+	cursor: pointer;
+	white-space: nowrap;
+	position: relative;
+	overflow: hidden;
+	min-width: 140px;
+	text-align: center;
+	box-sizing: border-box;
+}
+
+.TMDB-plugin__settings button::before {
+	content: "";
+	position: absolute;
+	top: 0;
+	left: -100%;
+	width: 100%;
+	height: 100%;
+	background: linear-gradient(90deg,
+			transparent,
+			rgba(255, 255, 255, 0.2),
+			transparent);
+}
+
+
+
+.TMDB-plugin__settings button:active {
+	transform: translateY(-1px);
+
+}
+
+.TMDB-plugin__settings button:disabled {
+	opacity: 0.5;
+	cursor: not-allowed;
+	transform: none;
+}
+
+.TMDB-plugin__settings button.mod-cta {
+	background-color: var(--interactive-accent);
+	border-color: var(--interactive-accent);
+	color: var(--text-on-accent);
+}
+
+
+/* Toggle switches */
+.TMDB-plugin__settings .checkbox-container {
+	display: flex;
+	align-items: center;
+	cursor: pointer;
+	user-select: none;
+}
+
+.TMDB-plugin__settings .checkbox-container input[type="checkbox"] {
+	position: relative;
+	width: 50px;
+	height: 26px;
+	margin: 0;
+	appearance: none;
+	background-color: var(--background-modifier-border);
+	border-radius: 13px;
+	cursor: pointer;
+	border: 2px solid var(--background-modifier-border);
+}
+
+
+
+.TMDB-plugin__settings .checkbox-container input[type="checkbox"]:checked {
+	background-color: var(--interactive-accent);
+	border-color: var(--interactive-accent);
+}
+
+.TMDB-plugin__settings .checkbox-container input[type="checkbox"]::before {
+	content: "";
+	position: absolute;
+	top: 2px;
+	left: 2px;
+	width: 18px;
+	height: 18px;
+	background-color: var(--background-primary);
+	border-radius: 50%;
+
+}
+
+.TMDB-plugin__settings .checkbox-container input[type="checkbox"]:checked::before {
+	transform: translateX(24px);
+}
+
+.TMDB-plugin__summary-actions .setting-item-info,
+.TMDB-plugin__button-container .setting-item-info {
+	display: none !important;
+}
+
+
+
+/* Accessibility improvements */
+.TMDB-plugin__settings *:focus-visible {
+	outline: 2px solid var(--interactive-accent);
+	outline-offset: 2px;
+}
+
+.TMDB-plugin__settings button:focus-visible {
+	outline-offset: 1px;
+}
+
+.TMDB-plugin__settings a:focus-visible {
+	outline: none;
+}
+
+
+/* Image Approval Modal Styles */
+
+
+.TMDB-plugin__approval-preview-container {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+
+	margin: 2rem 0;
+}
+
+.TMDB-plugin__approval-preview {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	min-height: 400px;
+	max-height: 600px;
+	width: 100%;
+	border-radius: 8px;
+	overflow: hidden;
+}
+
+.TMDB-plugin__approval-image {
+	max-width: 100%;
+	max-height: 600px;
+	object-fit: contain;
+	border-radius: 8px;
+}
+
+.TMDB-plugin__approval-placeholder {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	min-height: 400px;
+	font-size: 4rem;
+	color: var(--text-muted);
+	padding: 2rem;
+	text-align: center;
+}
+
+.TMDB-plugin__approval-placeholder p {
+	font-size: 1rem;
+	margin-top: 1rem;
+	color: var(--text-muted);
+}
+
+.TMDB-plugin__approval-navigation {
+	display: flex;
+	align-items: center;
+	gap: 1rem;
+	width: 100%;
+	justify-content: center;
+}
+
+.TMDB-plugin__approval-navigation .setting-item {
+	border: none;
+	padding: 0;
+
+}
+
+.TMDB-plugin__approval-navigation .setting-item-control {
+	display: flex;
+	align-items: center;
+
+}
+
+.TMDB-plugin__approval-navigation button {
+	min-width: 40px;
+	height: 40px;
+}
+
+
+/* Сама картинка */
+.TMDB-plugin__approval-image {
+	width: 100%;
+	/* Занимать 100% ширины контейнера */
+	height: auto;
+	/* Высота рассчитывается автоматически по пропорциям */
+
+}
+
+
+.TMDB-plugin__images-grid {
+	display: grid;
+
+	grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
+	gap: 12px;
+	overflow-y: auto;
+	max-height: 60vh;
+	align-items: start;
+}
+
+
+/* Элемент сетки */
+.TMDB-plugin__grid-item {
+	width: 100%;
+	position: relative;
+	border: 2px solid transparent;
+	border-radius: 10px;
+}
+
+.TMDB-plugin__grid-item img {
+	width: 100%;
+	height: auto;
+	display: block;
+	object-fit: cover;
+	border-radius: 8px;
+}
+
+.TMDB-plugin__summary-scroll {
+	flex: 1 1 auto;
+	/* Занимает все свободное пространство */
+	overflow-y: auto;
+	padding: 10px 20px;
+
+	/* Убираем лишние стили grid, если они конфликтуют */
+	display: flex;
+	flex-direction: column;
+	gap: 20px;
+
+
+}
+
+.TMDB-plugin__grid-item:hover {
+	border-color: var(--interactive-accent);
+}
+
+
+
+
+/* Контейнеры, в которых находится бейдж, должны быть позиционированы */
+.TMDB-plugin__summary-image-frame,
+.TMDB-plugin__grid-item {
+    position: relative;
+    overflow: hidden; /* Чтобы бейдж не вылезал за скругленные углы, если они есть */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Бейдж языка */
+.TMDB-plugin__language-badge {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    background-color: var(--interactive-accent);
+    color: var(--text-on-accent, white);
+    font-size: 11px;
+    line-height: 1;
+    padding: 3px 6px;
+    border-radius: 4px;
+    font-weight: 700;
+    z-index: 10;
+    pointer-events: none; /* Чтобы бейдж не мешал кликать по картинке */
+    text-transform: uppercase;
+}
+
+/* Специфичные правки для логотипов (если они маленькие) */
+.TMDB-plugin__summary-image-frame.is-logo .TMDB-plugin__language-badge {
+    top: 4px;
+    right: 4px;
+    font-size: 9px;
+}
+
+/* Эффект при выборе (для сетки) */
+.TMDB-plugin__grid-item.is-selected {
+    outline: 3px solid var(--interactive-accent);
+    outline-offset: -3px;
+}
+
+/* Исправление для картинок, чтобы они заполняли контейнер */
+.TMDB-plugin__summary-image-frame img,
+.TMDB-plugin__grid-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+/* Для логотипов используем contain, как в вашем коде */
+.TMDB-plugin__summary-image-frame img.is-contain {
+    object-fit: contain;
+}
+
+/* Сама карточка секции (Постер, Обложка и т.д.) */
+.TMDB-plugin__summary-section {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	/* Заголовок сверху, кнопка снизу */
+	align-items: flex-start;
+	gap: 5px;
+	width: 100%;
+	min-width: 0;
+}
+
+.TMDB-plugin__summary-header h3 {
+
+	margin: 0;
+	font-size: large;
+
+}
+
+
+
+.TMDB-plugin__button-container {
+	flex-shrink: 0;
+	/* Футер не сжимается */
+	position: relative;
+	/* Вместо sticky для надежности в flex-контейнере */
+
+	width: 100%;
+	border-top: 1px solid var(--background-modifier-border);
+	padding: 10px 0px;
+	z-index: 10;
+
+}
+
+
+/* Контейнер кнопки под картинкой */
+.TMDB-plugin__summary-actions {
+	display: flex;
+	justify-content: center;
+}
+
+/* Убираем стандартные отступы и границы компонента Setting внутри сводки */
+.TMDB-plugin__summary-actions .setting-item {
+	border: none;
+	padding: 0;
+
+}
+
+/* Рамка для картинки внутри сводки */
+.TMDB-plugin__summary-image-frame {
+	flex-grow: 1;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+
+	min-height: 150px;
+	/* Немного увеличим для красоты */
+}
+
+.TMDB-plugin__summary-image-frame img {
+	max-width: 100%;
+	max-height: 200px;
+	/* Чтобы не раздувались до гигантских размеров */
+	height: auto;
+	min-height: 100px;
+	/* Гарантируем минимальную высоту */
+	object-fit: contain;
+	/* Сохраняем пропорции без обрезки */
+	border-radius: 6px;
+}
+
+.TMDB-plugin__summary-image-frame.is-poster img {
+	aspect-ratio: 2 / 3;
+	max-height: 350px;
+}
+
+/* Специфические настройки для типов, чтобы они гармонично смотрелись в ряду */
+.TMDB-plugin__summary-image-frame.is-cover img {
+	aspect-ratio: 16 / 9;
+}
+
+
+.TMDB-plugin__summary-image-frame.is-logo img {
+	max-height: 100px;
+	/* Логотипы обычно очень узкие, им не нужно 200px высоты */
+	min-height: 60px;
+}
+
+.TMDB-plugin__summary-image-frame.is-logo {
+	min-height: 40px;
+}

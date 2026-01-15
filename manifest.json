@@ -1,0 +1,10 @@
+{
+	"id": "TMDB-actors-search",
+	"name": "TMDB Actors Search",
+	"version": "1.0.0",
+	"minAppVersion": "1.0.0",
+	"description": "Helps you find movies and tv shows via TMDB and create notes.",
+	"author": "Yanoky1",
+	"authorUrl": "https://github.com/Yanoky1",
+	"isDesktopOnly": false
+}
