@@ -3326,20 +3326,6 @@ var ObsidianTMDBPlugin = class extends import_obsidian10.Plugin {
         this.createNewNote();
       }
     });
-    this.addCommand({
-      id: "analyze-res-notes",
-      name: "Analyze current note for _res poster and update ratings",
-      callback: async () => {
-        await this.analyzeResNotes();
-      }
-    });
-    this.addCommand({
-      id: "analyze-all-res-notes",
-      name: "Analyze all notes in movie/series folders for _res poster and update ratings",
-      callback: async () => {
-        await this.analyzeAllResNotes();
-      }
-    });
     this.registerEvent(
       this.app.vault.on("create", (file) => {
         if (file instanceof import_obsidian10.TFile) {
