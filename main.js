@@ -2190,9 +2190,18 @@ function getImageExtension(url, mimeType) {
   }
   return "jpg";
 }
-function createImageFileName(movieShow, imageType, extension) {
-  const baseName = `${movieShow.id}_${imageType}`;
-  const cleanedBaseName = replaceIllegalFileNameCharactersInString(baseName);
+function createImageFileName(movieShow, imageType, extension, settings) {
+  const itemType = Array.isArray(movieShow.type) ? movieShow.type[0] : movieShow.type;
+  const isActor = itemType === "person" || itemType === "\u041F\u0435\u0440\u0441\u043E\u043D\u0430" || itemType.toLowerCase().includes("person");
+  let fileNameFormat = `${movieShow.id}_${imageType}`;
+  if (isActor && settings.actorImageFileNameFormat) {
+    fileNameFormat = settings.actorImageFileNameFormat;
+    const nameForFile = Array.isArray(movieShow.nameForFile) ? movieShow.nameForFile[0] || movieShow.id.toString() : movieShow.nameForFile || movieShow.name || movieShow.id.toString();
+    const enNameForFile = Array.isArray(movieShow.enNameForFile) ? movieShow.enNameForFile[0] || nameForFile : movieShow.enNameForFile || movieShow.enName || nameForFile;
+    fileNameFormat = fileNameFormat.replace(/{{id}}/g, movieShow.id.toString()).replace(/{{nameForFile}}/g, nameForFile).replace(/{{enNameForFile}}/g, enNameForFile);
+    fileNameFormat = `${fileNameFormat}_${imageType}`;
+  }
+  const cleanedBaseName = replaceIllegalFileNameCharactersInString(fileNameFormat);
   return `${cleanedBaseName}.${extension}`;
 }
 function extractCleanPath(imagePath) {
@@ -2317,14 +2326,14 @@ async function saveImageToVault(app, imageData, folderPath, fileName) {
   await vault.createBinary(finalPath, imageData);
   return finalPath;
 }
-async function downloadAndSaveImage(app, url, movieShow, imageType, folderPath) {
+async function downloadAndSaveImage(app, url, movieShow, imageType, folderPath, settings) {
   try {
     if (!isValidImageUrl(url)) {
       return url;
     }
     const { data, mimeType } = await downloadImage(url);
     const extension = getImageExtension(url, mimeType);
-    const fileName = createImageFileName(movieShow, imageType, extension);
+    const fileName = createImageFileName(movieShow, imageType, extension, settings);
     const localPath = await saveImageToVault(
       app,
       data,
@@ -2390,7 +2399,8 @@ async function processImages(app, movieShow, settings, progressCallback) {
             posterUrl,
             movieShow,
             "poster",
-            settings.imagesFolder
+            settings.imagesFolder,
+            settings
           );
           updatedMovieShow.posterMarkdown = createImageLink(localPath);
           updatedMovieShow.posterPath = [extractCleanPath(localPath)];
@@ -2430,7 +2440,8 @@ async function processImages(app, movieShow, settings, progressCallback) {
             coverUrl,
             movieShow,
             "cover",
-            settings.imagesFolder
+            settings.imagesFolder,
+            settings
           );
           updatedMovieShow.coverMarkdown = createImageLink(localPath);
           updatedMovieShow.coverPath = [extractCleanPath(localPath)];
@@ -2470,7 +2481,8 @@ async function processImages(app, movieShow, settings, progressCallback) {
             logoUrl,
             movieShow,
             "logo",
-            settings.imagesFolder
+            settings.imagesFolder,
+            settings
           );
           updatedMovieShow.logoMarkdown = createImageLink(localPath);
           updatedMovieShow.logoPath = [extractCleanPath(localPath)];
@@ -3108,7 +3120,7 @@ ${progressBar} ${current}/${total} (${percentage}%)`;
       const processedMovieShow = await processImages(
         this.plugin.app,
         movieShow,
-        imageSettings,
+        this.plugin.settings,
         progressCallback
       );
       if (imageProcessingCompleted) {
@@ -3142,6 +3154,8 @@ var DEFAULT_SETTINGS = {
   savePosterImage: true,
   saveCoverImage: true,
   saveLogoImage: true,
+  actorImageFileNameFormat: "{{id}}",
+  // Default format for actor image filenames
   // Movie settings
   movieFileNameFormat: "{{nameForFile}} ({{year}})",
   movieFolder: "Movies",
@@ -3229,6 +3243,12 @@ var ObsidianTMDBSettingTab = class extends import_obsidian8.PluginSettingTab {
     new import_obsidian8.Setting(containerEl).setName(t("settings.savePosterImage")).setDesc(t("settings.savePosterImageDesc")).addToggle(
       (toggle) => toggle.setValue(this.plugin.settings.savePosterImage).onChange(async (value) => {
         this.plugin.settings.savePosterImage = value;
+        await this.plugin.saveSettings();
+      })
+    );
+    new import_obsidian8.Setting(containerEl).setName("\u0424\u043E\u0440\u043C\u0430\u0442 \u0438\u043C\u0435\u043D\u0438 \u0444\u0430\u0439\u043B\u0430 \u0438\u0437\u043E\u0431\u0440\u0430\u0436\u0435\u043D\u0438\u044F \u0430\u043A\u0442\u0451\u0440\u0430").setDesc("\u0414\u043E\u0441\u0442\u0443\u043F\u043D\u044B\u0435 \u043F\u0435\u0440\u0435\u043C\u0435\u043D\u043D\u044B\u0435: {{id}}, {{nameForFile}}, {{enNameForFile}}").addText(
+      (text) => text.setPlaceholder("{{id}}").setValue(this.plugin.settings.actorImageFileNameFormat).onChange(async (value) => {
+        this.plugin.settings.actorImageFileNameFormat = value;
         await this.plugin.saveSettings();
       })
     );
@@ -3649,13 +3669,7 @@ ${t("common.status")}: "${escapedStatus}"
         movieShow = await processImages2(
           this.app,
           movieShow,
-          {
-            saveImagesLocally: this.settings.saveImagesLocally,
-            imagesFolder: this.settings.imagesFolder,
-            savePosterImage: this.settings.savePosterImage,
-            saveCoverImage: this.settings.saveCoverImage,
-            saveLogoImage: this.settings.saveLogoImage
-          }
+          this.settings
         );
       }
       if (userRating !== null) {
@@ -4005,13 +4019,7 @@ ${renderedContents}`;
         movieShow = await processImages2(
           this.app,
           movieShow,
-          {
-            saveImagesLocally: this.settings.saveImagesLocally,
-            imagesFolder: this.settings.imagesFolder,
-            savePosterImage: this.settings.savePosterImage,
-            saveCoverImage: this.settings.saveCoverImage,
-            saveLogoImage: this.settings.saveLogoImage
-          },
+          this.settings,
           (current, total, currentTask) => {
             if (total > 0) {
               imageNotice.setMessage(`Images: ${current}/${total}`);

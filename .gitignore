@@ -1,0 +1,40 @@
+# Compiled output
+*.map
+
+# Dependencies
+node_modules/
+package-lock.json
+*.tgz
+
+.hotreload
+
+# IDE files
+.vscode/
+.idea/
+*.iml
+
+# System files
+.DS_Store
+Thumbs.db
+
+# Archives
+*.rar
+
+# Obsidian user data
+data.json
+
+# Logs
+*.log
+npm-debug.log*
+
+# Runtime data
+*.pid
+*.seed
+*.pid.lock
+
+# Coverage directory used by tools like istanbul
+coverage/
+
+# Build artifacts
+dist/
+build/

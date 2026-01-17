@@ -17,6 +17,7 @@ export interface ObsidianTMDBPluginSettings {
 	savePosterImage: boolean;
 	saveCoverImage: boolean;
 	saveLogoImage: boolean;
+	actorImageFileNameFormat: string; // Format for actor image filenames
 
 	// Movie settings
 	movieFileNameFormat: string;
@@ -56,6 +57,7 @@ export const DEFAULT_SETTINGS: ObsidianTMDBPluginSettings = {
 	savePosterImage: true,
 	saveCoverImage: true,
 	saveLogoImage: true,
+	actorImageFileNameFormat: "{{id}}", // Default format for actor image filenames
 
 	// Movie settings
 	movieFileNameFormat: "{{nameForFile}} ({{year}})",
@@ -202,6 +204,18 @@ export class ObsidianTMDBSettingTab extends PluginSettingTab {
 					})
 			);
 
+		new Setting(containerEl)
+			.setName("Формат имени файла изображения актёра")
+			.setDesc("Доступные переменные: {{id}}, {{nameForFile}}, {{enNameForFile}}")
+			.addText((text) =>
+				text
+					.setPlaceholder("{{id}}")
+					.setValue(this.plugin.settings.actorImageFileNameFormat)
+					.onChange(async (value) => {
+						this.plugin.settings.actorImageFileNameFormat = value;
+						await this.plugin.saveSettings();
+					})
+			);
 
 		// Actor section
 		containerEl.createEl("h3", { text: "Настройки актёров" });

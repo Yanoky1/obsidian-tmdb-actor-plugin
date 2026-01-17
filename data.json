@@ -6,6 +6,7 @@
   "savePosterImage": true,
   "saveCoverImage": true,
   "saveLogoImage": true,
+  "actorImageFileNameFormat": "{{id}}",
   "movieFileNameFormat": "{{id}}",
   "movieFolder": "Dataview/Актеры_Режиссеры",
   "movieTemplateFile": "Templates/Links/Link Актеры_Режиссеры.md",

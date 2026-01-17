@@ -518,13 +518,7 @@ export default class ObsidianTMDBPlugin extends Plugin {
 				movieShow = await processImages(
 					this.app,
 					movieShow,
-					{
-						saveImagesLocally: this.settings.saveImagesLocally,
-						imagesFolder: this.settings.imagesFolder,
-						savePosterImage: this.settings.savePosterImage,
-						saveCoverImage: this.settings.saveCoverImage,
-						saveLogoImage: this.settings.saveLogoImage,
-					}
+					this.settings
 				);
 			}
 
@@ -1018,13 +1012,7 @@ export default class ObsidianTMDBPlugin extends Plugin {
 				movieShow = await processImages(
 					this.app,
 					movieShow,
-					{
-						saveImagesLocally: this.settings.saveImagesLocally,
-						imagesFolder: this.settings.imagesFolder,
-						savePosterImage: this.settings.savePosterImage,
-						saveCoverImage: this.settings.saveCoverImage,
-						saveLogoImage: this.settings.saveLogoImage,
-					},
+					this.settings,
 					(current: number, total: number, currentTask: string) => {
 						// Progress callback to show status
 						if (total > 0) {

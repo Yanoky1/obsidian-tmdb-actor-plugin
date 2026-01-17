@@ -323,7 +323,7 @@ export class ItemsSuggestModal extends SuggestModal<TMDBSuggestItem> {
             const processedMovieShow = await processImages(
                 this.plugin.app,
                 movieShow,
-                imageSettings,
+                this.plugin.settings,
                 progressCallback
             );
 

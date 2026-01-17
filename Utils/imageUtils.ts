@@ -8,7 +8,7 @@
 
 import { App, Notice, normalizePath, requestUrl } from "obsidian";
 import { MovieShow } from "Models/MovieShow.model";
-import { replaceIllegalFileNameCharactersInString } from "./utils";
+import { replaceIllegalFileNameCharactersInString, replaceVariableSyntax } from "./utils";
 import { ObsidianTMDBPluginSettings } from "Settings/settings";
 import { t, tWithParams } from "../i18n";
 
@@ -81,10 +81,34 @@ function getImageExtension(url: string, mimeType?: string): string {
 function createImageFileName(
 	movieShow: MovieShow,
 	imageType: string,
-	extension: string
+	extension: string,
+	settings: ObsidianTMDBPluginSettings
 ): string {
-	const baseName = `${movieShow.id}_${imageType}`;
-	const cleanedBaseName = replaceIllegalFileNameCharactersInString(baseName);
+	// Determine if this is an actor/person item
+	const itemType = Array.isArray(movieShow.type) ? movieShow.type[0] : movieShow.type;
+	const isActor = itemType === 'person' || itemType === 'Персона' || itemType.toLowerCase().includes('person');
+
+	// Use actor image filename format if this is an actor and the setting exists
+	let fileNameFormat = `${movieShow.id}_${imageType}`;
+	if (isActor && settings.actorImageFileNameFormat) {
+		// Replace placeholders in the format string
+		fileNameFormat = settings.actorImageFileNameFormat;
+
+		// Replace placeholders similar to how it's done in utils.ts
+		// Convert arrays to strings if needed
+		const nameForFile = Array.isArray(movieShow.nameForFile) ? movieShow.nameForFile[0] || movieShow.id.toString() : (movieShow.nameForFile || movieShow.name || movieShow.id.toString());
+		const enNameForFile = Array.isArray(movieShow.enNameForFile) ? movieShow.enNameForFile[0] || nameForFile : (movieShow.enNameForFile || movieShow.enName || nameForFile);
+
+		fileNameFormat = fileNameFormat
+			.replace(/{{id}}/g, movieShow.id.toString())
+			.replace(/{{nameForFile}}/g, nameForFile)
+			.replace(/{{enNameForFile}}/g, enNameForFile);
+
+		// Append the image type and extension
+		fileNameFormat = `${fileNameFormat}_${imageType}`;
+	}
+
+	const cleanedBaseName = replaceIllegalFileNameCharactersInString(fileNameFormat);
 	return `${cleanedBaseName}.${extension}`;
 }
 
@@ -280,7 +304,8 @@ export async function downloadAndSaveImage(
 	url: string,
 	movieShow: MovieShow,
 	imageType: string,
-	folderPath: string
+	folderPath: string,
+	settings: ObsidianTMDBPluginSettings
 ): Promise<string> {
 	try {
 		// Return URL as-is if it's not HTTP/HTTPS
@@ -290,7 +315,7 @@ export async function downloadAndSaveImage(
 
 		const { data, mimeType } = await downloadImage(url);
 		const extension = getImageExtension(url, mimeType);
-		const fileName = createImageFileName(movieShow, imageType, extension);
+		const fileName = createImageFileName(movieShow, imageType, extension, settings);
 		const localPath = await saveImageToVault(
 			app,
 			data,
@@ -373,14 +398,7 @@ function getImageTypeDisplayName(imageType: string): string {
 export async function processImages(
 	app: App,
 	movieShow: MovieShow,
-	settings: Pick<
-		ObsidianTMDBPluginSettings,
-		| "saveImagesLocally"
-		| "imagesFolder"
-		| "savePosterImage"
-		| "saveCoverImage"
-		| "saveLogoImage"
-	>,
+	settings: ObsidianTMDBPluginSettings,
 	progressCallback?: ProgressCallback
 ): Promise<MovieShow> {
 	// Return original data if local saving is disabled
@@ -422,7 +440,8 @@ export async function processImages(
 						posterUrl,
 						movieShow,
 						"poster",
-						settings.imagesFolder
+						settings.imagesFolder,
+						settings
 					);
 					updatedMovieShow.posterMarkdown =
 						createImageLink(localPath);
@@ -475,7 +494,8 @@ export async function processImages(
 						coverUrl,
 						movieShow,
 						"cover",
-						settings.imagesFolder
+						settings.imagesFolder,
+						settings
 					);
 					updatedMovieShow.coverMarkdown = createImageLink(localPath);
 					updatedMovieShow.coverPath = [extractCleanPath(localPath)];
@@ -524,7 +544,8 @@ export async function processImages(
 						logoUrl,
 						movieShow,
 						"logo",
-						settings.imagesFolder
+						settings.imagesFolder,
+						settings
 					);
 					updatedMovieShow.logoMarkdown = createImageLink(localPath);
 					updatedMovieShow.logoPath = [extractCleanPath(localPath)];
