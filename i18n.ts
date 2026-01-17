@@ -233,18 +233,18 @@ const ru: Translations = {
 	},
 
 	modals: {
-		searchTitle: "🍿 Поиск фильма или сериала",
+		searchTitle: "🍿 Поиск актеров",
 		searchPlaceholder: "Поиск по ключевому слову",
 		searchButton: "Найти",
 		searching: "Поиск...",
-		enterMovieName: "Введите название фильма или сериала для поиска",
+		enterMovieName: "Введите имя актера для поиска",
 		needApiToken: "Необходимо указать API токен в настройках плагина",
-		loadingMovieInfo: "Загружается информация о фильме...",
+		loadingMovieInfo: "Загружается информация об актере...",
 		preparingImages: "Подготовка к скачиванию изображений...",
-		movieInfoLoaded: "Информация о фильме загружена!",
-		errorMovieData: "Ошибка: неверные данные фильма",
+		movieInfoLoaded: "Информация об актере загружена!",
+		errorMovieData: "Ошибка: неверные данные актера",
 		errorUnexpected: "Произошла неожиданная ошибка",
-		errorGettingDetails: "Произошла неожиданная ошибка при получении информации о фильме",
+		errorGettingDetails: "Произошла неожиданная ошибка при получении информации об актере",
 		posterPlaceholderEmoji: "📽️",
 		posterTooltipGeoblock: "Постер недоступен (возможно, геоблокировка)",
 		posterTooltipMissing: "Постер отсутствует",
@@ -289,18 +289,18 @@ const ru: Translations = {
 	validation: {
 		invalidApiToken: "Недействительный API токен",
 		invalidSearchQuery: "Недействительный поисковый запрос",
-		invalidMovieId: "Недействительный ID фильма",
+		invalidMovieId: "Недействительный ID актера",
 		invalidPaginationParams: "Недействительные параметры пагинации",
 	},
 
 	provider: {
 		tokenRequired:
 			"Необходимо указать действительный API токен в настройках плагина",
-		enterMovieTitle: "Введите название фильма или сериала для поиска",
+		enterMovieTitle: "Введите имя актера для поиска",
 		nothingFound: 'По запросу "{query}" ничего не найдено.',
-		invalidMovieId: "Неверный ID фильма",
+		invalidMovieId: "Неверный ID актера",
 		tokenRequiredForMovie: "Необходимо указать действительный API токен",
-		movieInfoError: "Не удалось получить информацию о фильме",
+		movieInfoError: "Не удалось получить информацию об актере",
 		tryChangeQuery: "Попробуйте изменить поисковый запрос.",
 	},
 
@@ -364,7 +364,7 @@ const ru: Translations = {
 	},
 
 	utils: {
-		unknownMovie: "Неизвестный фильм",
+		unknownMovie: "Неизвестный актер",
 		copyPrefix: "Копия",
 		templateNotFound: "Шаблон не найден",
 		templateReadError: "Не удалось прочитать файл шаблона",
@@ -389,36 +389,36 @@ const ru: Translations = {
 		imagesFolderDesc: "Папка, где будут сохранены скачанные изображения.",
 		imagesFolderPlaceholder: "Например: attachments/TMDB",
 		savePosterImage: "Сохранять постеры",
-		savePosterImageDesc: "Скачивать и сохранять постеры фильмов/сериалов.",
+		savePosterImageDesc: "Скачивать и сохранять постеры актеров.",
 		saveCoverImage: "Сохранять обложки",
 		saveCoverImageDesc:
-			"Скачивать и сохранять обложки/бэкдропы фильмов/сериалов.",
+			"Скачивать и сохранять обложки/бэкдропы актеров.",
 		saveLogoImage: "Сохранять логотипы",
-		saveLogoImageDesc: "Скачивать и сохранять логотипы фильмов/сериалов.",
-		moviesHeading: "Фильмы",
-		movieFileName: "Имя файла фильма",
-		movieFileNameDesc: "Введите формат имени файла для фильмов.",
+		saveLogoImageDesc: "Скачивать и сохранять логотипы актеров.",
+		moviesHeading: "Актеры",
+		movieFileName: "Имя файла актера",
+		movieFileNameDesc: "Введите формат имени файла для актеров.",
 		movieFileNamePlaceholder: "Например: {{nameForFile}} ({{year}})",
-		movieFileLocation: "Расположение файлов фильмов",
-		movieFileLocationDesc: "Новые заметки о фильмах будут размещены здесь.",
+		movieFileLocation: "Расположение файлов актеров",
+		movieFileLocationDesc: "Новые заметки об актерах будут размещены здесь.",
 		movieFileLocationPlaceholder: "Например: папка1/папка2",
-		movieTemplateFile: "Файл шаблона для фильмов",
+		movieTemplateFile: "Файл шаблона для актеров",
 		movieTemplateFileDesc: "Файлы будут доступны как шаблоны.",
 		movieTemplateFilePlaceholder: "Например: templates/template-file",
 		exampleTemplate: "Пример шаблона",
-		seriesHeading: "Сериалы",
-		seriesFileName: "Имя файла сериала",
-		seriesFileNameDesc: "Введите формат имени файла для сериалов.",
+		seriesHeading: "Актеры",
+		seriesFileName: "Имя файла актера",
+		seriesFileNameDesc: "Введите формат имени файла для актеров.",
 		seriesFileNamePlaceholder: "Например: {{nameForFile}} ({{year}})",
-		seriesFileLocation: "Расположение файлов сериалов",
+		seriesFileLocation: "Расположение файлов актеров",
 		seriesFileLocationDesc:
-			"Новые заметки о сериалах будут размещены здесь.",
+			"Новые заметки об актерах будут размещены здесь.",
 		seriesFileLocationPlaceholder: "Например: папка1/папка2",
-		seriesTemplateFile: "Файл шаблона для сериалов",
+		seriesTemplateFile: "Файл шаблона для актеров",
 		seriesTemplateFileDesc: "Файлы будут доступны как шаблоны.",
 		seriesTemplateFilePlaceholder: "Например: templates/template-file",
 		actorHeading: "Настройки актеров",
-		
+
 		language: "Язык интерфейса",
 		languageDesc: "Выберите язык интерфейса плагина.",
 
@@ -429,10 +429,10 @@ const ru: Translations = {
 
 		actorFolder: "Папка для актёров",
 		actorFolderDesc: "Папка, в которой будут создаваться заметки об актёрах",
-		
+
 		actorTemplate: "Файл шаблона для актёров",
 		actorTemplateDesc: "Шаблон, который будет использоваться для создания заметок об актёрах",
-		
+
 		actorFileNameFormat: "Формат имени файла актёра",
 		actorFileNameFormatDesc: "Формат имени файла для актёров. Доступные переменные: {{id}}, {{nameForFile}}",
 
@@ -470,18 +470,18 @@ const en: Translations = {
 	},
 
 	modals: {
-		searchTitle: "🍿 Search movie or TV show",
+		searchTitle: "🍿 Search actors",
 		searchPlaceholder: "Search by keyword",
 		searchButton: "Search",
 		searching: "Searching...",
-		enterMovieName: "Enter movie or TV show name to search",
+		enterMovieName: "Enter actor name to search",
 		needApiToken: "API token must be specified in plugin settings",
-		loadingMovieInfo: "Loading movie information...",
+		loadingMovieInfo: "Loading actor information...",
 		preparingImages: "Preparing to download images...",
-		movieInfoLoaded: "Movie information loaded!",
-		errorMovieData: "Error: invalid movie data",
+		movieInfoLoaded: "Actor information loaded!",
+		errorMovieData: "Error: invalid actor data",
 		errorUnexpected: "An unexpected error occurred",
-		errorGettingDetails: "An unexpected error occurred while getting movie information",
+		errorGettingDetails: "An unexpected error occurred while getting actor information",
 		posterPlaceholderEmoji: "📽️",
 		posterTooltipGeoblock: "Poster unavailable (possibly geo-blocked)",
 		posterTooltipMissing: "Poster missing",
@@ -526,17 +526,17 @@ const en: Translations = {
 	validation: {
 		invalidApiToken: "Invalid API token",
 		invalidSearchQuery: "Invalid search query",
-		invalidMovieId: "Invalid movie ID",
+		invalidMovieId: "Invalid actor ID",
 		invalidPaginationParams: "Invalid pagination parameters",
 	},
 
 	provider: {
 		tokenRequired: "Valid API token must be specified in plugin settings",
-		enterMovieTitle: "Enter movie or TV show title to search",
+		enterMovieTitle: "Enter actor name to search",
 		nothingFound: 'Nothing found for query "{query}".',
-		invalidMovieId: "Invalid movie ID",
+		invalidMovieId: "Invalid actor ID",
 		tokenRequiredForMovie: "Valid API token must be specified",
-		movieInfoError: "Failed to get movie information",
+		movieInfoError: "Failed to get actor information",
 		tryChangeQuery: "Try changing the search query.",
 	},
 
@@ -596,7 +596,7 @@ const en: Translations = {
 	},
 
 	utils: {
-		unknownMovie: "Unknown Movie",
+		unknownMovie: "Unknown Actor",
 		copyPrefix: "Copy",
 		templateNotFound: "Template not found",
 		templateReadError: "Failed to read template file",
@@ -621,35 +621,35 @@ const en: Translations = {
 		imagesFolderDesc: "Folder where downloaded images will be saved.",
 		imagesFolderPlaceholder: "Example: attachments/TMDB",
 		savePosterImage: "Save poster images",
-		savePosterImageDesc: "Download and save movie/series poster images.",
+		savePosterImageDesc: "Download and save actor poster images.",
 		saveCoverImage: "Save cover/backdrop images",
 		saveCoverImageDesc:
-			"Download and save movie/series cover/backdrop images.",
+			"Download and save actor cover/backdrop images.",
 		saveLogoImage: "Save logo images",
-		saveLogoImageDesc: "Download and save movie/series logo images.",
-		moviesHeading: "Movies",
-		movieFileName: "Movie file name",
-		movieFileNameDesc: "Enter the movie file name format.",
+		saveLogoImageDesc: "Download and save actor logo images.",
+		moviesHeading: "Actors",
+		movieFileName: "Actor file name",
+		movieFileNameDesc: "Enter the actor file name format.",
 		movieFileNamePlaceholder: "Example: {{nameForFile}} ({{year}})",
-		movieFileLocation: "Movie file location",
-		movieFileLocationDesc: "New movie notes will be placed here.",
+		movieFileLocation: "Actor file location",
+		movieFileLocationDesc: "New actor notes will be placed here.",
 		movieFileLocationPlaceholder: "Example: folder1/folder2",
-		movieTemplateFile: "Movie template file",
+		movieTemplateFile: "Actor template file",
 		movieTemplateFileDesc: "Files will be available as templates.",
 		movieTemplateFilePlaceholder: "Example: templates/template-file",
 		exampleTemplate: "Example Template",
-		seriesHeading: "TV series",
-		seriesFileName: "TV series file name",
-		seriesFileNameDesc: "Enter the TV series file name format.",
+		seriesHeading: "Actors",
+		seriesFileName: "Actor file name",
+		seriesFileNameDesc: "Enter the actor file name format.",
 		seriesFileNamePlaceholder: "Example: {{nameForFile}} ({{year}})",
-		seriesFileLocation: "TV series file location",
-		seriesFileLocationDesc: "New TV series notes will be placed here.",
+		seriesFileLocation: "Actor file location",
+		seriesFileLocationDesc: "New actor notes will be placed here.",
 		seriesFileLocationPlaceholder: "Example: folder1/folder2",
-		seriesTemplateFile: "TV series template file",
+		seriesTemplateFile: "Actor template file",
 		seriesTemplateFileDesc: "Files will be available as templates.",
 		seriesTemplateFilePlaceholder: "Example: templates/template-file",
 		actorHeading: "Actor Settings",
-		
+
 		language: "Interface language",
 		languageDesc: "Select the plugin interface language.",
 
@@ -660,13 +660,13 @@ const en: Translations = {
 
 		actorFolder: "Actors folder",
 		actorFolderDesc: "Folder where actor notes will be created",
-		
+
 		actorTemplate: "Actor template file",
 		actorTemplateDesc: "Template that will be used to create actor notes",
-		
+
 		actorFileNameFormat: "Actor filename format",
 		actorFileNameFormatDesc: "Filename format for actors. Available variables: {{id}}, {{nameForFile}}, {{enNameForFile}}",
-	
+
 		validateToken: "Test token",
 	},
 
