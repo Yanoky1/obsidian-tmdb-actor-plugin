@@ -19,7 +19,7 @@ Key differences between the [original plugin](https://github.com/Alintor/obsidia
 5. **Better Obsidian compatibility** - Improved integration with Obsidian features
 6. **Bug fixes** - Minor issues from the original version have been resolved
 
-# Obsidian Kinopoisk Search Plus Plugin
+# Obsidian TMDB actor search
 
 Easily search movies and TV shows info via Kinopoisk and create notes.
 
